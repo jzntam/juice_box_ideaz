@@ -4,7 +4,7 @@
 
 ```shell
 Team Leader: Azriel Hopkins
-Group Members:  Jason
+Group Members:  Jason T.
 ```
 
 ```shell
