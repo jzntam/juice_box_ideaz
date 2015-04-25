@@ -1,0 +1,12 @@
+<h1>My Pinned Ideas Pins Index</h1>
+<%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
+<br>
+<br>
+<% @ideas.each do |element| %>
+  <div class="well">
+    <p>Title: <%= link_to element.title, idea_path(element) %></p>
+    <p>Description: <%= element.description %></p>
+    <p>Rank: <%= element.rank %></p>
+  </div>
+<% end %>
+<br>

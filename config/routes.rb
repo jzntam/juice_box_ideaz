@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :pins, only: [:create, :destroy]
   end
 
+  resources :pins, only: [:index]
+
   resources :sessions
   resources :users
   root 'welcome#index'
