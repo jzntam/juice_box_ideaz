@@ -1,3 +1,10 @@
 <%= @idea.title %>
 
 <%= render "/comments/form" %>
+
+<%= @idea.comments.each do |comment| %>
+  <%= comment.body %>
+  <%= comment.user %>
+  <%= link_to "Edit", edit_idea_comment_path(@idea, comment) %> |
+  <%= link_to "Delete", idea_comment_path(@idea, commment), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>

@@ -1,7 +1,7 @@
 <h1> This is index </h1>
 
 <% @ideas.each do |element| %>
-<%= element.title %>:
+<%= link_to element.title, idea_path(element) %>:
 <%= element.description %>
 Rank: 
 <%= element.rank %>
