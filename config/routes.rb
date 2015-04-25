@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   resources :teams
-  resources :ideas do 
+  resources :ideas do
     resources :comments
+    resources :pins, only: [:create, :destroy]
   end
-  
+
   resources :sessions
   resources :users
   root 'welcome#index'
