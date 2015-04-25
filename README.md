@@ -4,7 +4,7 @@
 
 ```shell
 Team Leader: Azriel Hopkins
-Group Members:  Jason, Zoë
+Group Members: Alex, Ciaran, Coty, David, Zoë & Jason
 ```
 
 ```shell
