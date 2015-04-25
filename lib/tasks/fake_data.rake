@@ -7,6 +7,9 @@ namespace :fake_data do
     12.times { |x| Idea.create(title: "Idea #{x + 1} " + Faker::Company.catch_phrase, description: Faker::Hacker.say_something_smart, rank: rand(1...10), user_id: ((User.all.map).each { |x| x.id}).sample )}
 
     50.times {Comment.create(body: Faker::Lorem.paragraph, user_id: ((User.all.map).each { |x| x.id}).sample, idea_id: ((Idea.all.map).each { |x| x.id}).sample)}
+
+     5.times {Team.create(title: Faker::Name.title, user_id: ((User.all.map).each { |x| x.id}).sample)}
+
   end
 
 end
