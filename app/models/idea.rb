@@ -8,4 +8,6 @@ class Idea < ActiveRecord::Base
   has_many :pins, dependent: :destroy
   has_many :users_who_pinned, through: :pins, source: :user
 
+
+
 end

@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
   has_many :pins, dependent: :destroy
   has_many :pinned_ideas, through: :pins, source: :idea  
 
+  has_many :memberships, dependent: :destroy
+  has_many :membered_teams, through: :memberships, source: :team
+
 end
