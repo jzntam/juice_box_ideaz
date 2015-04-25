@@ -8,6 +8,7 @@ class Idea < ActiveRecord::Base
   has_many :pins, dependent: :destroy
   has_many :users_who_pinned, through: :pins, source: :user
 
-
+  has_many :shares, dependent: :destroy
+  has_many :teams_shared_with, through: :shares, source: :team
 
 end
