@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  # before_action :authenticate_user!, except: [:index,:show]
+  before_action :authenticate_user!, except: [:index,:show]
   def index
     @ideas = Idea.all
   end
@@ -12,7 +12,7 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    # @idea.user = current_user
+    @idea.user = current_user
       if @idea.save
         redirect_to idea_path(@idea)
       else
@@ -26,15 +26,22 @@ class IdeasController < ApplicationController
   end
 
   def edit
-
+    @idea = Idea.find(params[:id])
   end
 
   def update
-
+    @idea = Idea.find(params[:id])
+    if @idea.update(idea_params)
+      redirect_to ideas_path(@idea), notice: "Idea updated!"
+    else
+      flash[:notice] = "Please fix errors"
+    end
   end
 
   def destroy
-
+    @idea = Idea.find(params[:id])
+    @idea.destroy
+    redirect_to ideas_path, notice: "Idea deleted succesfully!"
   end
 
   private

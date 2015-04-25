@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :ideas
+  resources :ideas do 
+    resources :comments
+  end
+  
   resources :sessions
   resources :users
   root 'welcome#index'
