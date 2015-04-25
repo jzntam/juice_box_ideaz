@@ -11,9 +11,17 @@ class User < ActiveRecord::Base
   has_many :teams
 
   has_many :pins, dependent: :destroy
-  has_many :pinned_ideas, through: :pins, source: :idea  
+  has_many :pinned_ideas, through: :pins, source: :idea
 
   has_many :memberships, dependent: :destroy
   has_many :membered_teams, through: :memberships, source: :team
+
+  def full_name
+  if first_name || last_name
+    "#{first_name} #{last_name}".strip.squeeze(" ")
+  else
+    email
+  end
+end
 
 end
