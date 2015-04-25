@@ -3,6 +3,14 @@
 
 <%= render "/comments/form" %>
 
+<% pin = @idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+
+<% if pin %>
+  <%= link_to fa_icon("thumbs-up 3x"), idea_pin_path(@idea, pin), method: :delete %>
+<% else %>
+  <%= link_to fa_icon("thumbs-o-up 3x"), idea_pins_path(@idea), method: :post %> |
+<% end %>
+
 <% @idea.comments.each do |comment| %>
   <div class="well">
     <p>Comment Body: <%= comment.body %></p>
