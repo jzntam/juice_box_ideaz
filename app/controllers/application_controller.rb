@@ -20,5 +20,5 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound
   end
-  helper_method :current_user #makes it accessible in the views, not just 
+  helper_method :current_user #makes it accessible in the views, not just
 end
