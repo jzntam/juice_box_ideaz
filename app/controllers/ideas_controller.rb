@@ -2,7 +2,8 @@ class IdeasController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   def index
     @my_ideas = current_user.ideas
-    @shared_with_me = current_user.membered_teams.shared_ideas
+    @shared_with_me = current_user.shared_ideas
+    @ideas = current_user.pinned_ideas
   end
 
   def show

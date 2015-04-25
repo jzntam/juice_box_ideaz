@@ -11,9 +11,11 @@ class User < ActiveRecord::Base
   has_many :teams
 
   has_many :pins, dependent: :destroy
-  has_many :pinned_ideas, through: :pins, source: :idea  
+  has_many :pinned_ideas, through: :pins, source: :idea
 
   has_many :memberships, dependent: :destroy
   has_many :membered_teams, through: :memberships, source: :team
 
+  has_many :shared_ideas, through: :membered_teams
+  
 end

@@ -1,4 +1,4 @@
-<h1>My Pinned Ideas</h1>
+<h1>My Pinned Ideas Pins Index</h1>
 <%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
 <br>
 <br>
@@ -10,19 +10,24 @@
   </div>
 <% end %>
 <br>
+<hr>
 
-<!-- <% @my_ideas.each do |idea| %>
-<div class="well">
-  <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
-  <p>Description: <%= idea.description %></p>
-  <p>Rank: <%= idea.rank %></p>
-</div>
-<% end %> -->
-
+<h1>Ideas Shared With Me</h1>
+<br>
+<br>
 <% @shared_with_me.each do |idea| %>
+  <div class="well">
+    <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
+    <p>Description: <%= idea.description %></p>
+  </div>
+<% end %>
+<br>
+<hr>
+
+<h1>Ideas Created By Me</h1>
+<% @my_ideas.each do |idea| %>
 <div class="well">
   <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
   <p>Description: <%= idea.description %></p>
-  <p>Rank: <%= idea.rank %></p>
 </div>
 <% end %>
