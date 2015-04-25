@@ -1,5 +1,11 @@
 <%= @team.title %>
-
+<br>
+<%#= @team.user.first_name %>
+<% @team.membered_users.each do |element| %>
+  <%= element.first_name %>
+  <%= element.last_name %>
+  <br>
+<% end %>
 <br><br>
 
 <%= link_to "Edit", edit_team_path(@team) %> | 
