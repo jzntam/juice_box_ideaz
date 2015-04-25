@@ -1,9 +1,10 @@
 <h1> This is index </h1>
-
-<% @ideas.each do |element| %>
-<%= link_to element.title, idea_path(element) %>:
-<%= element.description %>
-Rank: 
-<%= element.rank %>
+<%= link_to "New Idea", new_idea_path, class: "btn btn-primary btn-lg" %>
 <br>
+<br>
+<% @ideas.each do |element| %>
+  <p>Title: <%= link_to element.title, idea_path(element) %></p>
+  <p>Description: <%= element.description %></p>
+  <p>Rank: <%= element.rank %></p>
+  <br>
 <% end %>

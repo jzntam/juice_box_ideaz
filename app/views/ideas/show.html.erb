@@ -1,10 +1,13 @@
-<%= @idea.title %>
+<p>Title: <%= @idea.title %></p>
+<p>Description: <%= @idea.description %></p>
 
 <%= render "/comments/form" %>
 
-<%= @idea.comments.each do |comment| %>
-  <%= comment.body %>
-  <%= comment.user %>
-  <%= link_to "Edit", edit_idea_comment_path(@idea, comment) %> |
-  <%= link_to "Delete", idea_comment_path(@idea, commment), method: :delete, data: {confirm: "Are you sure?"} %>
+<% @idea.comments.each do |comment| %>
+  <div class="well">
+    <p>Comment Body: <%= comment.body %></p>
+    <p>Creator: <%= comment.user.first_name %></p>
+    <p><%= link_to "Edit", edit_idea_comment_path(@idea, comment) %></p>
+    <p><%= link_to "Delete", idea_comment_path(@idea, comment), method: :delete, data: {confirm: "Are you sure?"} %></p>
+  </div>
 <% end %>
