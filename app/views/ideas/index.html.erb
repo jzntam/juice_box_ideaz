@@ -1,0 +1,9 @@
+<h1> This is index </h1>
+
+<% @ideas.each do |element| %>
+<%= element.title %>:
+<%= element.description %>
+Rank: 
+<%= element.rank %>
+<br>
+<% end %>
