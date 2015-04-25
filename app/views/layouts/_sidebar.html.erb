@@ -1,12 +1,13 @@
-<div id="wrapper">
+
 <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <%= link_to "Juice Box Ideaz", ideas_path %>
+        <%= image_tag "brain3.png" %>
       </li>
+      <br>
       <li>
-        <a href="#">Pinned</a>
+        <%= link_to "Pinned", ideas_path %>
       </li>
       <li>
         <a href="#">Created by me</a>
@@ -22,12 +23,11 @@
       <li>
         <a href="#"><strong>Teams</strong></a>
       </li>
+      <% current_user.teams.each do |team| %>
       <li>
-        <a href="#">/name</a>
+        <%= link_to team.title, team_path(team) %>
       </li>
-      <li>
-        <a href="#">/name</a>
-      </li>
+      <% end %>
       <li>
         <%= link_to "+ New Team", new_team_path %>
       </li>
