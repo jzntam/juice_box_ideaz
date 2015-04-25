@@ -6,4 +6,7 @@ class Team < ActiveRecord::Base
 
   has_many :memberships, dependent: :destroy
   has_many :membered_users, through: :memberships, source: :user
+
+  has_many :shares, dependent: :destroy
+  has_many :shared_ideas, through: :shares, source: :idea
 end
