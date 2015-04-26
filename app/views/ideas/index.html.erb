@@ -2,6 +2,7 @@
 <%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
 <br>
 <br>
+<input type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
 <div id="pin">
 <% @ideas.each do |idea| %>
   <div class="well">
@@ -13,7 +14,7 @@
         <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
       <% end %>
     </div>
-    <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
+    <p class="title">Title: <%= link_to idea.title, idea_path(idea) %></p>
     <p>Rank: <%= idea.rank %></p>
     <div>
       <% if current_user.id == idea.user_id %>
