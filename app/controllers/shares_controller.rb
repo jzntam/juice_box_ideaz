@@ -18,7 +18,7 @@ class SharesController < ApplicationController
     if error.present?
       flash[:error] = "Sorry something went wrong"
     else
-      flash[:success] = "Created successfully"
+      flash[:notice] = "Created successfully"
       redirect_to idea_path(idea)
     end
   end
