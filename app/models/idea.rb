@@ -11,4 +11,14 @@ class Idea < ActiveRecord::Base
   has_many :shares, dependent: :destroy
   has_many :teams_shared_with, through: :shares, source: :team
 
+  # This is the algorithm that will generate a integer value that you will sort on.
+  def activity_score
+    comments.where('created_at < ?', 2.months.ago).count + (pins.count * 5)
+  end
+
+  # this takes a block that
+  def self.active_ideas
+    all.sort_by(&:activity_score)
+  end
+
 end

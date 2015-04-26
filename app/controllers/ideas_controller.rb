@@ -4,6 +4,7 @@ class IdeasController < ApplicationController
     @my_ideas = current_user.ideas
     @shared_with_me = current_user.shared_ideas
     @ideas = current_user.pinned_ideas
+    @sorted_ideas = Idea.active_ideas
   end
 
   def show
@@ -19,7 +20,6 @@ class IdeasController < ApplicationController
       else
       render :new
       end
-
   end
 
   def new
@@ -32,10 +32,14 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if @idea.update(idea_params)
-      redirect_to idea_path(@idea), notice: "Idea updated!"
-    else
-      flash[:notice] = "Please fix errors"
+    respond_to do |format|
+      if @idea.update(idea_params)
+        format.html { redirect_to idea_path(@idea), notice: "Idea updated!" }
+        format.json { head :ok }
+      else
+        format.html { flash[:notice] = "Please fix errors" }
+        format.json { render :json => @idea.errors.full_messages, :status => :unprocessable_entity }
+      end
     end
   end
 
