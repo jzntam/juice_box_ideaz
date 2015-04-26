@@ -2,6 +2,10 @@ class PinsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    @pins = Pin.all
+  end
+
   def create
     idea = Idea.find params[:idea_id]
     pin = current_user.pins.new
