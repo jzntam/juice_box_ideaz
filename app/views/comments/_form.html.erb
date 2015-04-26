@@ -1,4 +1,4 @@
-<%= simple_form_for [@idea, @comment] do |element| %>
+<%= simple_form_for [@idea, @comment], remote: true do |element| %>
   <%= element.input :body %>
 
   <%= element.submit %>

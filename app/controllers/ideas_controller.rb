@@ -5,6 +5,7 @@ class IdeasController < ApplicationController
     @shared_with_me = current_user.shared_ideas
     @ideas = current_user.pinned_ideas
     @sorted_ideas = Idea.active_ideas
+
   end
 
   def show

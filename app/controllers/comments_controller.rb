@@ -10,11 +10,15 @@ class CommentsController < ApplicationController
     @comment      = Comment.new(comment_params)
     @comment.user = current_user
     @comment.idea = @idea
+    respond_to do |format|
     if @comment.save
-      redirect_to idea_path(@idea), 
-                    notice: "comment created!"
+      format.html {redirect_to idea_path(@idea), 
+                    notice: "comment created!" }
+      format.js { render :create_success}
     else
-      render "ideas/show"
+      format.html {render "ideas/show"}
+      format.js {render :create_failure}
+    end
     end
   end
 
