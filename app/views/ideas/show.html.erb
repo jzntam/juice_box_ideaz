@@ -5,7 +5,7 @@
 <% if pin %>
   <%= link_to fa_icon("bookmark 3x"), idea_pin_path(@idea, pin), method: :delete %>
 <% else %>
-  <%= link_to fa_icon("bookmark-o 3x"), idea_pins_path(@idea), method: :post %> |
+  <%= link_to fa_icon("bookmark-o 3x"), idea_pins_path(@idea), method: :post %>
 <% end %>
 
 <% if current_user.id === @idea.user_id %>
