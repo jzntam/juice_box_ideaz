@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :membered_teams, through: :memberships, source: :team
 
+  has_many :shared_ideas, through: :membered_teams
+
   def full_name
     if first_name || last_name
       "#{first_name} #{last_name}".strip.squeeze(" ")
