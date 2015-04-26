@@ -4,14 +4,17 @@
 <br>
 <input type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
 <div id="pin">
-<% @ideas.each do |idea| %>
-  <div class="well">
-    <div>
+<% @pins.each do |pin| %>
+  <% idea = pin.idea %>
+  <div id="pin_<%= pin.id %>" class="well">
+    <h3><%= link_to idea.title, idea_path(idea) %></h3>
+      <p>Rank: <%= idea.rank %></p>
+    <div class="bookmark">
       <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
       <% if pin %>
-        <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+        <p><%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %></p>
       <% else %>
-        <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
+      <p><%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %></p>
       <% end %>
     </div>
     <p class="title">Title: <%= link_to idea.title, idea_path(idea) %></p>
@@ -21,9 +24,9 @@
         <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
       <% end %>
     </div>
-    <div>
+    <div class="trash">
       <% if current_user.id == idea.user_id %>
-        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
+        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}, style: "color:black"  %>
       <% end %>
     </div>
   </div>
