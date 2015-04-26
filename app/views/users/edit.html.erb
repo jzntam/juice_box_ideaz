@@ -1,0 +1,23 @@
+<h1>My Profile</h1>
+
+<p><%= @user.handle %></p>
+
+<%= simple_form_for @user do |element| %>
+  <%= element.input :first_name %>
+  <%= element.input :last_name %>
+  <%= element.input :bio %>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">http://www.facebook.com/</span>
+  <%= element.text_field :facebook, class: "form-control" %>
+</div>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">http://www.twitter.com/</span>
+  <%= element.text_field :twitter, class: "form-control" %>
+</div>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">http://www.github.com/</span>
+  <%= element.text_field :github, class: "form-control" %>
+</div>
+  <%= element.submit %>
+
+<% end %>

@@ -1,7 +1,9 @@
 class IdeasController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   def index
-    @ideas = Idea.all
+    @my_ideas = current_user.ideas
+    @shared_with_me = current_user.shared_ideas
+    @ideas = current_user.pinned_ideas
   end
 
   def show
@@ -31,7 +33,7 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     if @idea.update(idea_params)
-      redirect_to ideas_path(@idea), notice: "Idea updated!"
+      redirect_to idea_path(@idea), notice: "Idea updated!"
     else
       flash[:notice] = "Please fix errors"
     end
