@@ -3,3 +3,46 @@
   height: auto;
   width: 100%;
 }
+
+.left-image {
+ float: left;
+ margin-right: 53px;
+ margin-left: 20px;
+}
+
+.right-image {
+  float: right;
+  margin-bottom: 25px;
+  margin-left: 40px;
+  margin-right: 43px;
+}
+
+.main {
+  /*padding-bottom: 143px;*/
+  padding-top: 24px;
+  clear: both;
+}
+
+.left-side {
+  background-color: #EEEEEE;
+}
+
+.test{
+  float: right;
+}
+
+.left-text {
+  float: right;
+  width: 600px;
+  text-align: left;
+}
+
+img.left-image.img-responsive {
+  margin-left: 46px;
+  margin-bottom: 25px
+}
+
+.main-text {
+ font-size: 19px;
+ max-width: 900px ;
+}
