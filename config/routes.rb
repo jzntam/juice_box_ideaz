@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :shares
   resources :teams
   resources :ideas do
     resources :comments
+    resources :shares
     resources :pins, only: [:create, :destroy]
   end
 
   resources :pins, only: [:index]
+
+  resources :pins do
+    post :sort, on: :collection
+  end
 
   resources :sessions
   resources :users

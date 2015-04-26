@@ -17,6 +17,8 @@ gem 'sass-rails', '~> 5.0'
 gem "font-awesome-rails"
 gem 'simple_form'
 gem 'redcarpet'
+gem 'best_in_place', '~> 3.0.3'
+gem 'jquery-ui-rails'
 
 group :development do
   gem "interactive_editor"

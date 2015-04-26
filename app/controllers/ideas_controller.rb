@@ -3,7 +3,9 @@ class IdeasController < ApplicationController
   def index
     @my_ideas = current_user.ideas
     @shared_with_me = current_user.shared_ideas
-    @ideas = current_user.pinned_ideas
+    # @ideas = current_user.pinned_ideas
+    @sorted_ideas = Idea.active_ideas
+    @pins = current_user.pins.order('postion')
   end
 
   def show
@@ -19,7 +21,6 @@ class IdeasController < ApplicationController
       else
       render :new
       end
-
   end
 
   def new
@@ -32,10 +33,14 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if @idea.update(idea_params)
-      redirect_to idea_path(@idea), notice: "Idea updated!"
-    else
-      flash[:notice] = "Please fix errors"
+    respond_to do |format|
+      if @idea.update(idea_params)
+        format.html { redirect_to idea_path(@idea), notice: "Idea updated!" }
+        format.json { render }
+      else
+        format.html { flash[:notice] = "Please fix errors" }
+        format.json { render :json => @idea.errors.full_messages, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -45,9 +50,10 @@ class IdeasController < ApplicationController
     redirect_to ideas_path, notice: "Idea deleted succesfully!"
   end
 
+
   private
 
   def idea_params
-    params.require(:idea).permit(:title,:description)
+    params.require(:idea).permit(:title,:description, { team_ids: [] })
   end
 end

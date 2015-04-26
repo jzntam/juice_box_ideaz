@@ -12,6 +12,29 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
+//= require jquery.purr
+//= require best_in_place.purr
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+console.log('js loaded');
+
+$(document).ready(function() {
+   $('#filter-library').on("keyup", function(e){
+    var searchTerm = $('#filter-library').val();
+    if(e.keyCode == 8) {
+    $(".title:not(:contains("+searchTerm+"))").parent().fadeOut();
+    $(".title:contains("+searchTerm+")").parent().fadeIn();
+    } else {
+    $(".title:not(:contains("+searchTerm+"))").parent().fadeOut();
+    }
+  })})  ;
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});

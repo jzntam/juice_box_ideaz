@@ -3,9 +3,13 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <%= image_tag "brain3.png" %>
+        <%= link_to(image_tag("brain3.png", :alt => "logo", :title => "Home"), "/ideas") %>
+
       </li>
       <br>
+      <li>
+        <u>Ideas</u>
+      </li>
       <li>
         <%= link_to "Pinned", ideas_path %>
       </li>
@@ -23,7 +27,7 @@
       <li>
         <u>Teams</u>
       </li>
-      <% current_user.teams.each do |team| %>
+      <% current_user.membered_teams.each do |team| %>
       <li>
         <%= link_to team.title, team_path(team) %>
       </li>
