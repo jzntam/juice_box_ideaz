@@ -21,13 +21,13 @@
         <br>
         <br>
       <li>
-        <a href="#"><strong>Teams</strong></a>
+        <a><u>Teams</u></a>
       </li>
       <% current_user.teams.each do |team| %>
       <li>
         <%= link_to team.title, team_path(team) %>
       </li>
-      <% end %>
+        <% end %>
       <li>
         <%= link_to "+ New Team", new_team_path %>
       </li>

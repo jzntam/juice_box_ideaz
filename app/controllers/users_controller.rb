@@ -12,12 +12,12 @@ class UsersController < ApplicationController
       redirect_to ideas_path, notice: "Successfully Registered"
     else
       flash[:alert] = "Error creating account, please try again."
-      render "new"
+      redirect_to new_user_path
     end
   end
 
   def show
-    @user = current_user
+    @user = User.find params[:id]
   end
 
   def edit
