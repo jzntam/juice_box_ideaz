@@ -9,10 +9,15 @@
 <body>
 <div id="wrapper">
 <!-- sidebar -->
+<% if @login_page %>
+<% else %>
 <%= render "/layouts/sidebar" %>
-
+<% end %>
 <!-- navbar -->
+<% if @login_page %>
+<% else %>
 <%= render "/layouts/navbar" %>
+<% end %>
 <!-- Page Content -->
 <div id="page-content-wrapper">
   <div class="container-fluid">
