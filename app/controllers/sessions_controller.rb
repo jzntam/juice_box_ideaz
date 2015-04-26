@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to ideas_path, notice: "Logged in!"
     else
       flash[:alert] = "Incorrect Login Info! Have you Signed Up?"
-      render :new
+      redirect_to new_session_path
     end
   end
 

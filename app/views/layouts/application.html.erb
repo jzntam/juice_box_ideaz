@@ -27,8 +27,12 @@
           <!-- <h1>The Juice Box Ideaz</h1> -->
           <!-- <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p> -->
         <!--   <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a> -->
-        <div class="alerts">
-            <%= flash[:notice] || flash[:alert] %>
+          <div class="container">
+            <% if flash[:notice] %>
+              <div class="alert alert-success"><%= flash[:notice] %></div>
+            <% elsif flash[:alert] %>
+              <div class="alert alert-danger"><%= flash[:alert] %></div>
+            <% end %>
           </div>
           <%= yield %>
         </div>
