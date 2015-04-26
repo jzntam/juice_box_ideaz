@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "user"
 
   def new
     @login_page = true
@@ -11,7 +12,8 @@ class SessionsController < ApplicationController
       redirect_to ideas_path, notice: "Logged in!"
     else
       flash[:alert] = "Incorrect Login Info! Have you Signed Up?"
-      redirect_to new_session_path
+      # redirect_to new_session_path
+      render :new
     end
   end
 
