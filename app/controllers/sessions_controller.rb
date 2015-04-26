@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @login_page = true
   end
 
   def create
