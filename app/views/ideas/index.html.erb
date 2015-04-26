@@ -4,11 +4,24 @@
 <br>
 <% @ideas.each do |idea| %>
   <div class="well">
+    <div>
+      <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+      <% if pin %>
+        <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+      <% else %>
+        <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
+      <% end %>
+    </div>
     <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
     <p>Rank: <%= idea.rank %></p>
     <div>
       <% if current_user.id == idea.user_id %>
         <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+      <% end %>
+    </div>
+    <div>
+      <% if current_user.id == idea.user_id %>
+        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
       <% end %>
     </div>
   </div>
@@ -21,10 +34,23 @@
 <br>
 <% @shared_with_me.each do |idea| %>
   <div class="well">
+    <div>
+      <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+      <% if pin %>
+        <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+      <% else %>
+        <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
+      <% end %>
+    </div>
     <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
     <div>
       <% if current_user.id == idea.user_id %>
         <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+      <% end %>
+    </div>
+    <div>
+      <% if current_user.id == idea.user_id %>
+        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
       <% end %>
     </div>
   </div>
@@ -35,10 +61,23 @@
 <h2>Ideas Created By Me</h2>
 <% @my_ideas.each do |idea| %>
 <div class="well">
+  <div>
+    <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+    <% if pin %>
+      <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+    <% else %>
+      <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
+    <% end %>
+  </div>
   <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
   <div>
     <% if current_user.id == idea.user_id %>
       <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+    <% end %>
+  </div>
+  <div>
+    <% if current_user.id == idea.user_id %>
+      <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
     <% end %>
   </div>
 </div>
