@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.idea = @idea
     respond_to do |format|
     if @comment.save
-      format.html {redirect_to idea_path(@idea), 
+      format.html {redirect_to idea_path(@idea),
                     notice: "comment created!" }
       format.js { render :create_success}
     else
@@ -41,8 +41,11 @@ class CommentsController < ApplicationController
     @idea = Idea.find params[:idea_id]
     @comment = Comment.find params[:id]
     @comment.destroy
-    redirect_to idea_path(@idea), 
-                  notice: "comment deleted"
+    respond_to do |format|
+      format.html {redirect_to idea_path(@idea),
+                  notice: "comment deleted"}
+      format.js {render}
+    end
   end
 
   private
