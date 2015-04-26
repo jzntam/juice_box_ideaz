@@ -1,4 +1,4 @@
-<p>Title: <%= @idea.title %></p>
+<p>Title: <%= best_in_place @idea, :title, as: :input %></p>
 
 <p>Description: </p>
   <%= raw markdown.render(@idea.description) %>
