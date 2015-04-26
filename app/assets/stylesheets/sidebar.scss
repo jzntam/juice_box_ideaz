@@ -54,6 +54,7 @@
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
+    color: #999999;
 }
 
 .sidebar-nav li a {
@@ -65,7 +66,7 @@
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: #FFC46C; /*rgba(255,255,255,0.2);*/
 }
 
 .sidebar-nav li a:active,
