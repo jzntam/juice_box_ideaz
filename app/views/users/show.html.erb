@@ -1,6 +1,9 @@
 <h1><%= @user.first_name %></h1>
-<%= gravatar_for @user %>
+  <div class="gravatar">
+    <%= gravatar_for @user %>
+  </div>
 
+<br>
 <%= link_to @user.handle, user_path(@user) %>
 <br>
 <%= @user.bio %>
