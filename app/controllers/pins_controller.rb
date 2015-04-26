@@ -23,4 +23,5 @@ class PinsController < ApplicationController
     redirect_to ideas_path, alert: "Unpinned :("
   end
 
+
 end
