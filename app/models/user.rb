@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
 
   has_secure_password
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, length: { minimum: 6},  confirmation: true, on: :create
+  validates :bio, presence: true
 
   has_many :ideas, dependent: :destroy
   has_many :comment, dependent: :destroy
@@ -25,4 +27,9 @@ class User < ActiveRecord::Base
       email
     end
   end
+
+  def handle
+    "@#{first_name}_#{last_name}"
+  end
+
 end
