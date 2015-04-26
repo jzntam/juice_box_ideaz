@@ -2,6 +2,7 @@
 <%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
 <br>
 <br>
+<div id="pin">
 <% @ideas.each do |idea| %>
   <div class="well">
     <div>
@@ -26,6 +27,7 @@
     </div>
   </div>
 <% end %>
+</div>
 <br>
 <hr>
 
