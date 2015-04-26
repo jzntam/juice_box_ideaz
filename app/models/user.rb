@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, length: { minimum: 6},  confirmation: true, on: :create
-  validates :bio, presence: true
 
   has_many :ideas, dependent: :destroy
   has_many :comment, dependent: :destroy
