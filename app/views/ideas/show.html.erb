@@ -1,5 +1,7 @@
-<p>Title: <%= @idea.title %></p>
-<p>Description: <%= @idea.description %></p>
+<p>Title: <%= best_in_place @idea, :title, as: :input %></p>
+
+<p>Description: </p>
+  <%= raw markdown.render(@idea.description) %>
 <p>Created by: <%= link_to @idea.user.full_name, user_path(@idea.user) %></p>
 <% pin = @idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
 <% if pin %>
@@ -28,4 +30,13 @@
       <p><%= link_to "Delete", idea_comment_path(@idea, comment), method: :delete, data: {confirm: "Are you sure?"} %></p>
     <% end %>
   </div>
+<% end %>
+
+<h2>Sharing Ideas With Teams</h2>
+<br>
+
+<%= simple_form_for Share.new, url: idea_shares_path(@idea), method: :post do |f| %>
+  <%= f.collection_check_boxes :team_ids, current_user.teams, :id, :title %> 
+  <%#= f.association :teams_shared_with, as: :check_boxes %>
+  <%= f.submit %>
 <% end %>

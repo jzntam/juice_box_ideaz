@@ -1,22 +1,25 @@
-<%= @team.title %>
+<h1><%= @team.title %></h1>
 <br>
+<h2>Team Members</h2>
 <%#= @team.user.first_name %>
 <% @team.membered_users.each do |element| %>
   <%= element.first_name %>
   <%= element.last_name %>
   <br>
 <% end %>
+<hr>
 
+<h2>Ideas Shared With <%= @team.title %></h2>
 <% @team.shared_ideas.each do |element| %>
   <%= element.title %>
   <%= element.description %>
   <br>
 <% end %>
-  
+
 
 
 <br><br>
 
-<%= link_to "Edit", edit_team_path(@team) %> | 
+<%= link_to "Edit", edit_team_path(@team) %> |
 
 <%= link_to "Delete", team_path(@team), method: :delete, data: {confirm: "Are you sure?"} %>

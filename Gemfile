@@ -16,6 +16,9 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '~> 5.0'
 gem "font-awesome-rails"
 gem 'simple_form'
+gem 'redcarpet'
+gem 'best_in_place', '~> 3.0.3'
+gem 'jquery-ui-rails'
 
 group :development do
   gem "interactive_editor"
@@ -32,4 +35,3 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-

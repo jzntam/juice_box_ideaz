@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "user"
 
   def new
     @user = User.new
@@ -12,7 +13,8 @@ class UsersController < ApplicationController
       redirect_to ideas_path, notice: "Successfully Registered"
     else
       flash[:alert] = "Error creating account, please try again."
-      redirect_to new_user_path
+      # redirect_to new_user_path
+      render :new
     end
   end
 
