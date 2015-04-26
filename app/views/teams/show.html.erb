@@ -1,5 +1,6 @@
 <h1><%= @team.title %></h1>
 <br>
+<input type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
 <h2>Team Members</h2>
 <%#= @team.user.first_name %>
 <% @team.membered_users.each do |element| %>
@@ -8,12 +9,13 @@
   <br>
 <% end %>
 <hr>
-
 <h2>Ideas Shared With <%= @team.title %></h2>
 <% @team.shared_ideas.each do |element| %>
-  <%= element.title %>
+  <div>
+  <p class="title"><%= element.title %> </p>
   <%= element.description %>
-  <br>
+  <hr>
+  </div>
 <% end %>
 
 
