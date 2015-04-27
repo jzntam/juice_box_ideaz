@@ -11,7 +11,10 @@ class PinsController < ApplicationController
     pin = current_user.pins.new
     pin.idea = idea
     if pin.save
-      redirect_to ideas_path, notice: "Pinned!"
+      # request.referrer stores that last location the browser was at
+      # this is so when the pin is clicked it doesn't go back to the
+      # index page.
+      redirect_to request.referrer, notice: "Pinned!"
     else
       redirect_to ideas_path, alert: "Pin not working, try again!"
     end
@@ -20,7 +23,7 @@ class PinsController < ApplicationController
   def destroy
     pin = current_user.pins.find params[:id]
     pin.destroy
-    redirect_to ideas_path, alert: "Unpinned :("
+    redirect_to request.referrer, alert: "Unpinned :("
   end
 
   def sort
