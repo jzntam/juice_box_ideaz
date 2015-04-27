@@ -23,13 +23,11 @@
 <!-- Page Content -->
 <div id="page-content-wrapper">
   <div class="container-fluid">
-    <div style="max-width:500px">
-      <% if flash[:notice] %>
-        <div class="alert alert-success"><%= flash[:notice] %></div>
-      <% elsif flash[:alert] %>
-        <div class="alert alert-danger"><%= flash[:alert] %></div>
-      <% end %>
-    </div>
+    <% if flash[:notice] %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
     <div class="col-md-offset-1">
       <%= yield %>
     </div>

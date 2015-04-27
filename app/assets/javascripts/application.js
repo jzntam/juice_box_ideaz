@@ -21,6 +21,8 @@
 //= require turbolinks
 //= require_tree .
 
+console.log('js loaded');
+
 $(document).ready(function() {
    $('#filter-library').on("keyup", function(e){
     var searchTerm = $('#filter-library').val();
@@ -36,12 +38,3 @@ $(document).ready(function() {
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
 });
-
-$(document).ready(function() {
-
-  $('#pin').sortable();
-
-
-});
-
-

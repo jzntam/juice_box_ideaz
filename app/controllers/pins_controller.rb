@@ -3,7 +3,7 @@ class PinsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pins = Pin.all
+    @pins = current_user.pins.sort_by('postion')
   end
 
   def create
@@ -21,6 +21,13 @@ class PinsController < ApplicationController
     pin = current_user.pins.find params[:id]
     pin.destroy
     redirect_to ideas_path, alert: "Unpinned :("
+  end
+
+  def sort
+    params[:pin].each_with_index do |id, index|
+      Pin.find(id).update!(postion: index + 1)
+    end
+    render nothing: true
   end
 
 
