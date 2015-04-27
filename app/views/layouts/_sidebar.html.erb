@@ -30,7 +30,7 @@
       <li class="button_tag">
         <%= button_tag "+ New Team", :class => "new-team", 'data-toggle' => 'modal', 'data-target' => "#myModal3" %>
       </li>
-      <% current_user.teams.each do |team| %>
+      <% current_user.membered_teams.each do |team| %>
       <li>
         <%= link_to team.title, team_path(team) %>
       </li>
