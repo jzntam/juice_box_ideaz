@@ -1,5 +1,10 @@
 <h1><%= @team.title %></h1>
 <br>
+<%= link_to "Invite team members to #{@team.title}!", edit_team_path(@team) %>
+<br>
+<%#= link_to "Manage" %>
+<br>
+<hr>
 <h2>Ideas Shared With <%= @team.title %></h2><hr>
 <input style="width: 300px"type="text" id="filter-library" class="form-control" placeholder="Filter ideas..."/>
 <% @team.shared_ideas.active_ideas.each do |element| %>

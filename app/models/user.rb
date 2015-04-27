@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_many :shared_ideas, through: :membered_teams
 
+  has_many :invitations
+
   def full_name
     if first_name || last_name
       "#{first_name} #{last_name}".strip.squeeze(" ")

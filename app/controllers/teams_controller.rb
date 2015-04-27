@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @teams = current_user.teams
     @sorted_ideas = Idea.active_ideas
@@ -27,6 +28,7 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find params[:id]
+    @invitation = Invitation.new
   end
 
   def update
