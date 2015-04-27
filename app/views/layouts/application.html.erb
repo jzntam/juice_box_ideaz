@@ -3,44 +3,47 @@
 <head>
   <title>TeamJuiceBoxIdeaz</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-   <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
- <!--  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!--  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="wrapper">
-<!-- sidebar -->
-  <% if @login_page %>
-  <% else %>
+  <div id="wrapper">
+    <!-- sidebar -->
+    <% if @login_page %>
+    <% else %>
     <%= render "/layouts/sidebar" %>
-  <% end %>
-
-<!-- navbar -->
-  <% if @login_page %>
-  <% else %>
-    <%= render "/layouts/navbar" %>
-  <% end %>
-
-<!-- Page Content -->
-<div id="page-content-wrapper">
-  <div class="container-fluid">
-    <% if flash[:notice] %>
-      <div class="alert alert-success"><%= flash[:notice] %></div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger"><%= flash[:alert] %></div>
     <% end %>
-    <div class="col-md-offset-1">
-      <%= yield %>
-    </div>
+
+    <!-- navbar -->
+    <% if @login_page %>
+    <% else %>
+    <%= render "/layouts/navbar" %>
+    <% end %>
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% elsif flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+        <% end %>
+        <div class="col-md-offset-1">
+          <%= yield %>
+        </div>
+      </div>
+    </div> <!-- /#page-content-wrapper -->
   </div>
-</div> <!-- /#page-content-wrapper -->
-<!-- Menu Toggle Script -->
-<script>
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-</script>
-</body>
-</html>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+  </body>
+  </html>

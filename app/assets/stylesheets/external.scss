@@ -60,6 +60,10 @@ img.left-image.img-responsive {
   margin-left: 171px;
 }
 
+.modal-fix {
+  margin-left: 0px;
+}
+
 button.modal-box {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -77,5 +81,25 @@ button.modal-box {
   text-decoration: none;
   margin-top: 31px;
   margin-right: 13px;
+}
+
+button.modal-box:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+button.new-team {
+  background-color: #000000;
+  border: none;
+}
+
+button.new-team:hover {
+  background-color: #FFC46C;
+  color: #000000
 }
 

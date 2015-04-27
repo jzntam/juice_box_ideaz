@@ -1,26 +1,31 @@
-<p>Title: <%= best_in_place @idea, :title, as: :input %></p>
+<h1>Idea</h1>
+<div class="show_idea">
+  <h2><%= best_in_place @idea, :title, as: :input %></h2>
 
-<p>Description: </p>
-<% if current_user == @idea.user %>
-  <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }) %>
-<% else %>
-  <% mk_statement = markdown.render(@idea.description) %>
-<% end %>
+  <h4>Description: </h4>
+  <% if current_user == @idea.user %>
+    <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }) %>
+  <% else %>
+    <% raw markdown.render(@idea.description) %>
+  <% end %>
 
-<p>Created by: <%= link_to @idea.user.full_name, user_path(@idea.user) %></p>
-<% pin = @idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
-<% if pin %>
-  <%= link_to fa_icon("bookmark 3x"), idea_pin_path(@idea, pin), method: :delete %>
-<% else %>
-  <%= link_to fa_icon("bookmark-o 3x"), idea_pins_path(@idea), method: :post %>
-<% end %>
+  <p>Created by: <%= link_to @idea.user.full_name, user_path(@idea.user) %></p>
+  <div class="pins">
+    <% pin = @idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+    <% if pin %>
+      <%= link_to fa_icon("bookmark 5x"), idea_pin_path(@idea, pin), method: :delete %>
+    <% else %>
+      <%= link_to fa_icon("bookmark-o 5x"), idea_pins_path(@idea), method: :post %>
+    <% end %>
+  </div>
+</div>
 
-<% if current_user == @idea.user %>
-<!-- see above with best_in_place -->
-  <%#= link_to "Edit", edit_idea_path(@idea) %>
-  <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
-
+  <% if current_user == @idea.user %>
+  <!-- see above with best_in_place -->
+    <%#= link_to "Edit", edit_idea_path(@idea) %>
+    <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  <% end %>
+</div>
 <div class="comment_form">
 <%= render "/comments/form" %>
 </div>
@@ -37,5 +42,5 @@
 <%= simple_form_for Share.new, url: idea_shares_path(@idea), method: :post do |f| %>
   <%= f.collection_check_boxes :team_ids, current_user.teams, :id, :title %>
   <%#= f.association :teams_shared_with, as: :check_boxes %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-info" %>
 <% end %>

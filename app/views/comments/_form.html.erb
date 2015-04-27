@@ -1,5 +1,5 @@
 <%= simple_form_for [@idea, @comment], remote: true do |element| %>
   <%= element.input :body, label: "Comment" %>
 
-  <%= element.submit %>
+  <%= element.submit class: "btn btn-info" %>
 <% end %>
