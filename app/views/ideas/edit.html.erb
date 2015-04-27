@@ -1,3 +1,12 @@
 <h1> Edit Idea </h1>
 
-<%= render "form" %>
+<div class="col-md-12">
+  <%= simple_form_for @idea do |element| %>
+  <div class="new-idea">
+    <%= element.input :title, class: "form-control" %>
+    <%= element.input :description, class: "form-control" %>
+    <%= element.submit class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>
+
