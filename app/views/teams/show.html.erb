@@ -10,9 +10,9 @@
 <% end %>
 <hr>
 <h2>Ideas Shared With <%= @team.title %></h2>
-<% @team.shared_ideas.each do |element| %>
+<% @team.shared_ideas.active_ideas.each do |element| %>
   <div>
-  <p class="title"><%= element.title %> </p>
+  <p class="title"><%= link_to element.title, idea_path(element) %> </p>
   <%= element.description %>
   <hr>
   </div>

@@ -54,18 +54,19 @@
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
-    color: #999999;
+    color: white;
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: white;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
+    color: black;
+    font-weight: bold;
     background: #FFC46C; /*rgba(255,255,255,0.2);*/
 }
 

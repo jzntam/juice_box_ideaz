@@ -18,7 +18,6 @@
 //= require jquery.purr
 //= require best_in_place.purr
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require_tree .
 
 console.log('js loaded');
