@@ -1,12 +1,13 @@
 <h1>Edit The Team</h1>
 
 <%= render "form" %>
+<br>
 
-<div>
+<div class="edit_form col-md-12">
   <%= form_for @invitation do |f| %>
     <%= hidden_field_tag(:team_id, @team[:id]) %>
     <%= f.label :email %>
-    <%= f.text_area :email %>
-    <%= f.submit %>
+    <%= f.text_field :email, class: "form-control" %>
+    <%= f.submit class: "btn btn-info coty-class"%>
   <% end %>
 </div>

@@ -4,7 +4,8 @@ class InvitationsController < ApplicationController
   def create
 
     email_chain = params[:invitation][:email]
-    email_array = email_chain.split(",")
+    white_space_removed = email_chain.gsub(' ', '')
+    email_array = white_space_removed.split(",")
     @team = Team.find(params[:team_id])
 
     #binding.pry
