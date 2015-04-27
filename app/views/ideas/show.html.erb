@@ -37,5 +37,5 @@
 <%= simple_form_for Share.new, url: idea_shares_path(@idea), method: :post do |f| %>
   <%= f.collection_check_boxes :team_ids, current_user.teams, :id, :title %>
   <%#= f.association :teams_shared_with, as: :check_boxes %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-info" %>
 <% end %>
