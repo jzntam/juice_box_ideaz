@@ -11,7 +11,7 @@ class SharesController < ApplicationController
         end
       end
     else
-      error = "You must have atleast 1 team"
+      error = "You must have at least 1 team"
       redirect_to :back
     end
 
