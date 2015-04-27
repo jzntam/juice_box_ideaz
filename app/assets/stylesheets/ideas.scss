@@ -60,6 +60,11 @@ i.fa.fa-bookmark.fa-5x {
   /* float: left; */
 }
 
+.no-line:hover {
+  text-decoration: none;
+}
+
+
 @media (max-width: 500px) {
   icon {
     text-align: left;

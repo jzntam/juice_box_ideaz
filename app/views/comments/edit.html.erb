@@ -1,6 +1,6 @@
 <h1>Edit Comment</h1>
 
 <%= simple_form_for [@idea, @comment] do |element| %>
-  <%= element.input :body, label: "Comment" %>
-  <%= element.submit %>
+  <%= element.input :body, label: false  %>
+  <%= element.submit class: "btn btn-info" %>
 <% end %>

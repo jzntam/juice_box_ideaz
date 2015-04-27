@@ -1,8 +1,9 @@
-<a name="pinned" style="color:black"><h2>My Pinned Ideas Pins Index</h2></a>
+<a class="no-line" name="pinned" style="color:black"><h2>My Pinned Ideas Pins Index</h2></a>
 <%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
 <br>
 <br>
 <input style="width: 300px" type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
+<br>
 <div id="pin">
 <% @pins.each do |pin| %>
   <% idea = pin.idea %>
@@ -39,7 +40,7 @@
 <br>
 <hr>
 
-<a name="shared_by" style="color:black"><h2>Ideas Shared With Me</h2></a>
+<a class="no-line" name="shared_by" style="color:black"><h2>Ideas Shared With Me</h2></a>
 <br>
 <br>
 <% @shared_with_me.each do |idea| %>
@@ -74,7 +75,7 @@
 <br>
 <hr>
 
-<a name="created_by" style="color:black"><h2>Ideas Created By Me</h2></a>
+<a class="no-line" name="created_by" style="color:black"><h2>Ideas Created By Me</h2></a>
 <% @my_ideas.each do |idea| %>
 <div class="well col-md-12">
   <div class="col-md-1">
