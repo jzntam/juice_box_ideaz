@@ -4,9 +4,13 @@
   </div>
 
 <br>
-<p><%= @user.handle %></p>
+<h3><%= @user.handle %></h3>
 <br>
-<%= @user.bio %>
+<h2>Biography</h2>
+<p><%= @user.bio %></p></br>
+<i class="fa fa-facebook-square fa-3x"></i><%= link_to " Facebook", "http://www.facebook.com/#{@user.facebook}" %></br>
+<i class="fa fa-twitter-square fa-3x"></i><%= link_to " Twitter", "http://www.twitter.com/#{@user.twitter}" %></br>
+<i class="fa fa-github-square fa-3x"></i><%= link_to " GitHub", "http://www.github.com/#{@user.github}" %></br>
 
 
 <!-- <%= link_to "New Team", new_team_path %> -->

@@ -1,6 +1,6 @@
 <h1>My Profile</h1>
 
-<p><%= @user.handle %></p>
+<p><%= link_to @user.handle, user_path(@user) %></p>
 <p><%= link_to "Teams I've Made", teams_path %></p>
 
 <%= simple_form_for @user do |element| %>
