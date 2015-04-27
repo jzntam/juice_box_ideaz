@@ -9,4 +9,6 @@ class Team < ActiveRecord::Base
 
   has_many :shares, dependent: :destroy
   has_many :shared_ideas, through: :shares, source: :idea
+
+  has_many :invitations
 end
