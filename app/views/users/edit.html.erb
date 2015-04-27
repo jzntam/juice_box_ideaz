@@ -2,11 +2,11 @@
 
 <p><%= link_to @user.handle, user_path(@user) %></p>
 <p><%= link_to "Teams I've Made", teams_path %></p>
-
+<div class="input-group">
 <%= simple_form_for @user do |element| %>
   <%= element.input :first_name %>
   <%= element.input :last_name %>
-  <%= element.input :bio %>
+  <%= element.input :bio %></br>
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">http://www.facebook.com/</span>
   <%= element.text_field :facebook, class: "form-control" %>
@@ -18,7 +18,9 @@
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">http://www.github.com/</span>
   <%= element.text_field :github, class: "form-control" %>
-</div>
+</div></br>
   <%= element.submit class: "btn btn-info" %>
 
 <% end %>
+
+</div>
