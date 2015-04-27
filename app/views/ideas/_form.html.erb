@@ -1,5 +1,5 @@
 <div class="col-md-12">
-  <%= simple_form_for @idea do |element| %>
+  <%= simple_form_for @idea, remote: true do |element| %>
   <div class="new-idea">
     <%= element.input :title, class: "form-control" %>
     <%= element.input :description, class: "form-control" %>

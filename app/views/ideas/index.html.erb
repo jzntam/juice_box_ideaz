@@ -1,86 +1,107 @@
-<h2>My Pinned Ideas Pins Index</h2>
+<a class="no-line" name="pinned" style="color:black"><h2>My Pinned Ideas Pins Index</h2></a>
 <%#= link_to "New Idea", new_idea_path, class: "btn btn-info btn-lg" %>
 <br>
 <br>
+<input style="width: 300px" type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
+<br>
 <div id="pin">
-<% @ideas.each do |idea| %>
-  <div class="well">
-    <div>
-      <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
-      <% if pin %>
-        <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
-      <% else %>
+<% @pins.each do |pin| %>
+  <% idea = pin.idea %>
+  <div id="pin_<%= pin.id %>" class="well col-md-12">
+    <div class=" col-md-1">
+      <span class="bookmark">
+        <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+        <% if pin %>
+          <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+        <% else %>
         <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
-      <% end %>
+        <% end %>
+      </span>
     </div>
-    <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
-    <p>Rank: <%= idea.rank %></p>
-    <div>
-      <% if current_user.id == idea.user_id %>
-        <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
-      <% end %>
+    <div class="col-md-9 title">
+      <h3><%= link_to idea.title.truncate(38), idea_path(idea) %></h3>
     </div>
-    <div>
-      <% if current_user.id == idea.user_id %>
-        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
-      <% end %>
+    <div class="icon col-md-2">
+      <span class="users">
+        <% if current_user.id == idea.user_id %>
+          <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+        <% end %>
+      </span>
+      <span class="trash">
+        <% if current_user.id == idea.user_id %>
+          <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}, style: "color:black"  %>
+        <% end %>
+      </span>
     </div>
+
   </div>
 <% end %>
 </div>
 <br>
 <hr>
 
-<h2>Ideas Shared With Me</h2>
+<a class="no-line" name="shared_by" style="color:black"><h2>Ideas Shared With Me</h2></a>
 <br>
 <br>
 <% @shared_with_me.each do |idea| %>
-  <div class="well">
-    <div>
-      <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
-      <% if pin %>
-        <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
-      <% else %>
-        <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
-      <% end %>
+  <div class="well col-md-12">
+    <div class="col-md-1">
+      <span class="bookmark">
+        <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
+        <% if pin %>
+          <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
+        <% else %>
+          <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
+        <% end %>
+      </span>
     </div>
-    <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
-    <div>
+    <div class="col-md-9">
+      <h3><%= link_to idea.title.truncate(38), idea_path(idea) %></h3>
+    </div>
+    <div class="icon col-md-2">
+      <span class="users">
       <% if current_user.id == idea.user_id %>
         <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
       <% end %>
-    </div>
-    <div>
+      </span>
+      <span class="trash">
       <% if current_user.id == idea.user_id %>
-        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
+        <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}, style:"color:black"  %>
       <% end %>
+      </span>
     </div>
   </div>
 <% end %>
 <br>
 <hr>
 
-<h2>Ideas Created By Me</h2>
+<a class="no-line" name="created_by" style="color:black"><h2>Ideas Created By Me</h2></a>
 <% @my_ideas.each do |idea| %>
-<div class="well">
-  <div>
+<div class="well col-md-12">
+  <div class="col-md-1">
+    <span class="bookmark">
     <% pin = idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
     <% if pin %>
       <%= link_to fa_icon("bookmark 2x"), idea_pin_path(idea, pin), method: :delete %>
     <% else %>
       <%= link_to fa_icon("bookmark-o 2x"), idea_pins_path(idea), method: :post %>
     <% end %>
+    </span>
   </div>
-  <p>Title: <%= link_to idea.title, idea_path(idea) %></p>
-  <div>
+  <div class="col-md-9">
+    <h3><%= link_to idea.title, idea_path(idea) %></h3>
+  </div>
+  <div class="icon col-md-2">
+    <span class="users">
     <% if current_user.id == idea.user_id %>
       <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
     <% end %>
-  </div>
-  <div>
+    </span>
+    <span class="trash">
     <% if current_user.id == idea.user_id %>
-      <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}  %>
+      <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}, style:"color:black"  %>
     <% end %>
+    </span>
   </div>
 </div>
 <% end %>

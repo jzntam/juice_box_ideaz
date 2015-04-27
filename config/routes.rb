@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   resources :pins, only: [:index]
 
+  resources :pins do
+    post :sort, on: :collection
+  end
+
   resources :sessions
   resources :users
   root 'welcome#index'

@@ -13,12 +13,12 @@ class Idea < ActiveRecord::Base
 
   # This is the algorithm that will generate a integer value that you will sort on.
   def activity_score
-    comments.where('created_at < ?', 2.months.ago).count + (pins.count * 5)
+    comments.where(created_at: 2.months.ago..DateTime.now).count + pins.count * 5
   end
 
-  # this takes a block that
+  # this takes a block of activity_score
   def self.active_ideas
-    all.sort_by(&:activity_score)
+    all.sort_by(&:activity_score).reverse
   end
 
 end

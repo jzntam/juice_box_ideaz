@@ -2,10 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a .pinned {
+  color: white;
+}
+
 .new-idea {
   width: 500px;
 }
 
 .well {
-  max-width: 600px;
+  background: #E1F5FA;
+  color: black;
+  padding: 10px;
+  h3 {
+    margin-top: 0px;
+    display: inline-block;
+  }
+}
+
+.title {
+  /* margin-top: -10px; */
+}
+
+.icon {
+  /* float: right; */
+  padding: 0px;
+  width: 65px;
+  text-align: right;
+}
+
+.trash, .users, .bookmark {
+  width: 30px;
+  /* display: inline-block; */
+
+}
+i.fa.fa-bookmark.fa-2x {
+  color: #FFC46C;
+}
+
+i.fa.fa-bookmark-o.fa-2x {
+  color: #FFC46C;
+}
+
+i.fa.fa-bookmark-o.fa-5x {
+  color: #FFC46C;
+}
+
+i.fa.fa-bookmark.fa-5x {
+  color: #FFC46C;
+}
+/* .users {
+  width: 30px;
+  display: inline-block;
+} */
+
+.bookmark {
+  /* float: left; */
+}
+
+.no-line:hover {
+  text-decoration: none;
+}
+
+
+@media (max-width: 500px) {
+  icon {
+    text-align: left;
+  }
 }

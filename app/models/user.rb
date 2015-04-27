@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def handle
-    "@#{first_name}_#{last_name}"
+    "@#{first_name}_#{last_name}".downcase
   end
 
 end

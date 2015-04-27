@@ -4,6 +4,7 @@
 <br>
 <%= link_to "Manage" %>
 <br>
+<input style="width: 300px"type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
 <h2>Team Members</h2>
 <%#= @team.user.first_name %>
 <% @team.membered_users.each do |element| %>
@@ -12,18 +13,20 @@
   <br>
 <% end %>
 <hr>
-
-<h2>Ideas Shared With <%= @team.title %></h2>
-<% @team.shared_ideas.each do |element| %>
-  <%= element.title %>
-  <%= element.description %>
-  <br>
+<h2>Ideas Shared With <%= @team.title %></h2><hr>
+<% @team.shared_ideas.active_ideas.each do |element| %>
+  <div>
+  <h1 class="title"><%= link_to element.title, idea_path(element) %> </h1>
+  <%#= element.description %>
+  <p><%= raw markdown.render(element.description) %></p>
+  <hr>
+  </div>
 <% end %>
 
 
 
 <br><br>
 
-<%= link_to "Edit", edit_team_path(@team) %> |
+<%= link_to "Edit", edit_team_path(@team),class: "btn btn-info" %>
 
-<%= link_to "Delete", team_path(@team), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Delete", team_path(@team), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-info" %>

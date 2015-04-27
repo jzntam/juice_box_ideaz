@@ -1,5 +1,4 @@
-<%= simple_form_for [@idea, @comment] do |element| %>
-  <%= element.input :body %>
-
-  <%= element.submit %>
+<%= simple_form_for [@idea, @comment], remote: true do |element| %>
+  <%= element.input :body, label: false, placeholder: "Add your comments here..." %>
+  <%= element.submit class: "btn btn-info" %>
 <% end %>

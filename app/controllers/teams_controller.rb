@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   
   def index
     @teams = current_user.teams
+    @sorted_ideas = Idea.active_ideas
   end
 
   def new
@@ -12,6 +13,10 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.teams.new(team_params)
     if @team.save
+      member = Membership.new
+      member.user_id = current_user.id
+      member.team_id = @team.id
+      member.save
       flash[:notice] = "Team Created Successfully!"
       redirect_to team_path(@team)
     end
