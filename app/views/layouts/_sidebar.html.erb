@@ -20,7 +20,7 @@
         <%= link_to "Shared by me", ideas_path+"\#shared_by" %>
       </li>
       <li>
-        <%= link_to "+ New Idea", new_idea_path %>
+        <%= button_tag "+ New Idea", :class => "new-team", 'data-toggle' => 'modal', 'data-target' => "#myModal4" %>
       </li>
         <br>
         <br>
@@ -33,8 +33,44 @@
       </li>
         <% end %>
       <li>
-        <%= link_to "+ New Team", new_team_path %>
+        <%= button_tag "+ New Team", :class => "new-team", 'data-toggle' => 'modal', 'data-target' => "#myModal3" %>
       </li>
     </ul>
   </div>
-       <!-- /#sidebar-wrapper -->
+<!--- New Team Modal Box -->
+  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body modal-fix">
+          <%= simple_form_for Team.new do |team| %>
+          <div>
+            <%= team.input :title, class: "form-control" %>
+            <%= team.submit class: "btn btn-info" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End of New Team Modal Box -->
+
+<!--- New Idea Modal Box -->
+  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body modal-fix">
+          <%= simple_form_for Idea.new, remote: true do |element| %>
+          <div class="new-idea">
+          <%= element.input :title, class: "form-control" %>
+          <%= element.input :description, class: "form-control" %>
+          <%= element.submit class: "btn btn-info" %>
+          <% end %>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of New Idea Modal Box -->
+
+
+
