@@ -27,7 +27,7 @@
       <li>
         <u>Teams</u>
       </li>
-      <% current_user.membered_teams.each do |team| %>
+      <% current_user.teams.each do |team| %>
       <li>
         <%= link_to team.title, team_path(team) %>
       </li>
