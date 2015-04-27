@@ -1,5 +1,9 @@
 <h1><%= @team.title %></h1>
 <br>
+<%= link_to "Invite team members to #{@team.title}!", edit_team_path(@team) %>
+<br>
+<%= link_to "Manage" %>
+<br>
 <h2>Team Members</h2>
 <%#= @team.user.first_name %>
 <% @team.membered_users.each do |element| %>

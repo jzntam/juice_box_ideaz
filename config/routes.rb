@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :invitations
   resources :teams
   resources :ideas do
     resources :comments

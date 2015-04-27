@@ -1,0 +1,9 @@
+<p>Hello <%=@receiving_email %></p>
+<br>
+<p><%=@invited_by%> sent you an invitation to join the <%=@team_to_join%> team!</p>
+<p>Click on the link below to join the team and start sharing.</p>
+<%= link_to "Join The Team!", team_url(@invitation.team, invite: @invitation)%>
+<p>Regards,</p>
+<p>Your Juice Box Team</p>
+<br>
+<p>* generating juicy ideas since 2015</p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425230656) do
+ActiveRecord::Schema.define(version: 20150426195328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20150425230656) do
   end
 
   add_index "ideas", ["user_id"], name: "index_ideas_on_user_id", using: :btree
+
+  create_table "invitations", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "token"
+  end
+
+  add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
+  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -95,6 +107,8 @@ ActiveRecord::Schema.define(version: 20150425230656) do
   add_foreign_key "comments", "ideas"
   add_foreign_key "comments", "users"
   add_foreign_key "ideas", "users"
+  add_foreign_key "invitations", "teams"
+  add_foreign_key "invitations", "users"
   add_foreign_key "memberships", "teams"
   add_foreign_key "memberships", "users"
   add_foreign_key "pins", "ideas"
