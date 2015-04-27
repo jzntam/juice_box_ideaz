@@ -4,7 +4,6 @@ class IdeasController < ApplicationController
     @my_ideas = current_user.ideas
     @shared_with_me = current_user.shared_ideas
     # @ideas = current_user.pinned_ideas
-    @sorted_ideas = Idea.active_ideas
     @pins = current_user.pins.order('postion')
   end
 

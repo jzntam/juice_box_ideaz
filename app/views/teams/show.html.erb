@@ -9,11 +9,12 @@
   <br>
 <% end %>
 <hr>
-<h2>Ideas Shared With <%= @team.title %></h2>
+<h2>Ideas Shared With <%= @team.title %></h2><hr>
 <% @team.shared_ideas.active_ideas.each do |element| %>
   <div>
-  <p class="title"><%= link_to element.title, idea_path(element) %> </p>
-  <%= element.description %>
+  <h1 class="title"><%= link_to element.title, idea_path(element) %> </h1>
+  <%#= element.description %>
+  <p><%= raw markdown.render(element.description) %></p>
   <hr>
   </div>
 <% end %>
@@ -22,6 +23,6 @@
 
 <br><br>
 
-<%= link_to "Edit", edit_team_path(@team),class: "btn btn-info" %> 
+<%= link_to "Edit", edit_team_path(@team),class: "btn btn-info" %>
 
 <%= link_to "Delete", team_path(@team), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-info" %>

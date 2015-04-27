@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = current_user.teams
+    @sorted_ideas = Idea.active_ideas
   end
 
   def new
