@@ -24,7 +24,7 @@
     <div class="icon col-md-2">
       <span class="users">
         <% if current_user.id == idea.user_id %>
-          <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+         <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
         <% end %>
       </span>
       <span class="trash">
@@ -58,12 +58,13 @@
     <div class="col-md-9">
       <h3><%= link_to idea.title.truncate(38), idea_path(idea) %></h3>
     </div>
-    <div class="icon col-md-2">
+    <!--
       <span class="users">
-      <% if current_user.id == idea.user_id %>
-        <%= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
-      <% end %>
-      </span>
+      <%# if current_user.id == idea.user_id %>
+        <%#= link_to fa_icon("users 2x"), idea_path(idea), method: :get %>
+      <%# end %>
+      </span> -->
+      <div class="icon col-md-2">
       <span class="trash">
       <% if current_user.id == idea.user_id %>
         <%= link_to fa_icon("trash 2x"), idea_path(idea), method: :delete, data: {confirm: "Are you sure?"}, style:"color:black"  %>
@@ -104,4 +105,4 @@
     </span>
   </div>
 </div>
-<% end %>
+  <% end %>

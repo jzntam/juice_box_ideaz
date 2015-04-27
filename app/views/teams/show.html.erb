@@ -2,9 +2,19 @@
 <br>
 <%= link_to "Invite team members to #{@team.title}!", edit_team_path(@team) %>
 <br>
-<%= link_to "Manage" %>
+<%#= link_to "Manage" %>
 <br>
-<input style="width: 300px"type="text" id="filter-library" class="form-control" placeholder="Filter..."/>
+<hr>
+<h2>Ideas Shared With <%= @team.title %></h2><hr>
+<input style="width: 300px"type="text" id="filter-library" class="form-control" placeholder="Filter ideas..."/>
+<% @team.shared_ideas.active_ideas.each do |element| %>
+  <div class="well teams">
+  <h1 class="title"><%= link_to element.title, idea_path(element) %> </h1>
+  <%#= element.description %>
+  <p><%= raw markdown.render(element.description) %></p>
+  </div>
+<% end %>
+
 <h2>Team Members</h2>
 <%#= @team.user.first_name %>
 <% @team.membered_users.each do |element| %>
@@ -13,16 +23,6 @@
   <br>
 <% end %>
 <hr>
-<h2>Ideas Shared With <%= @team.title %></h2><hr>
-<% @team.shared_ideas.active_ideas.each do |element| %>
-  <div>
-  <h1 class="title"><%= link_to element.title, idea_path(element) %> </h1>
-  <%#= element.description %>
-  <p><%= raw markdown.render(element.description) %></p>
-  <hr>
-  </div>
-<% end %>
-
 
 
 <br><br>
