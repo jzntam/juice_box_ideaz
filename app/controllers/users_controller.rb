@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout "user", only: [:new, :create]
+  before_action :authenticate_user!, only: [:update]
 
   def new
     @user = User.new
@@ -31,7 +32,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "Updated Successfully! Good job!"
     else
-      flash[:notice] = "Guess again..."
+      flash[:alert] = "Invalid entry, please try again"
+      render :edit
     end
   end
 
