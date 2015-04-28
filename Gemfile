@@ -33,6 +33,8 @@ end
 group :development, :test do
   gem 'faker'
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
