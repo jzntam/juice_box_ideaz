@@ -1,6 +1,6 @@
 <div class="show_idea">
   <% if current_user == @idea.user %>
-    <h1><%= best_in_place @idea, :title, as: :input %></h1>
+    <h1><%= best_in_place @idea, :title, as: :input, :html_attrs => { :style => 'width:100%;' } %></h1>
     <% else %>
       <h1><%= @idea.title %></h1>
     <% end %>
@@ -15,7 +15,7 @@
   </div>
   <div class="description">
     <% if current_user == @idea.user %>
-      <%= best_in_place(@idea, :description,  :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }) %>
+      <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }, :html_attrs => { :style => 'width:100%;' }) %>
     <% else %>
 
       <%= raw markdown.render(@idea.description) %>

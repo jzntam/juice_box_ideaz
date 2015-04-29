@@ -35,7 +35,7 @@ class IdeasController < ApplicationController
     respond_to do |format|
       if @idea.update(idea_params)
         format.html { redirect_to idea_path(@idea), notice: "Idea updated!" }
-        format.json { render }
+        format.json { respond_with_bip(@idea) }
       else
         format.html { flash[:notice] = "Please fix errors" }
         format.json { render :json => @idea.errors.full_messages, :status => :unprocessable_entity }
