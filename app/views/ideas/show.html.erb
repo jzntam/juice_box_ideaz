@@ -1,6 +1,6 @@
 <div class="show_idea">
   <% if current_user == @idea.user %>
-    <h1><%= best_in_place @idea, :title, as: :input %></h1>
+    <h1><%= best_in_place @idea, :title, as: :input, :html_attrs => { :style => 'width:100%;' } %></h1>
     <% else %>
       <h1><%= @idea.title %></h1>
     <% end %>
@@ -15,7 +15,7 @@
   </div>
   <div class="description">
     <% if current_user == @idea.user %>
-      <%= best_in_place(@idea, :description,  :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }) %>
+      <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }, :html_attrs => { :style => 'width:100%;' }) %>
     <% else %>
 
       <%= raw markdown.render(@idea.description) %>
@@ -33,13 +33,7 @@
   <%= render "/comments/form" %>
 </div>
 <div class="comments_count">
-  <% if @idea.comments.count > 1 %>
-    <p><strong>There are <%= @idea.comments.count %> Comments</strong></p>
-  <% elsif @idea.comments.count == 1 %>
-    <p><strong>There is 1 Comment</strong></p>
-  <% else %>
-    <p><strong>No Comments Have Been Made...</strong></p>
-  <% end %>
+  <%= render partial: "/comments/count" %>
 </div>
 <br>
 <hr>

@@ -1,0 +1,7 @@
+  <% if @idea.comments.count > 1 %>
+    <p><strong>There are <%= @idea.comments.count %> Comments</strong></p>
+  <% elsif @idea.comments.count == 1 %>
+    <p><strong>There is 1 Comment</strong></p>
+  <% else %>
+    <p><strong>No Comments Have Been Made...</strong></p>
+  <% end %>
