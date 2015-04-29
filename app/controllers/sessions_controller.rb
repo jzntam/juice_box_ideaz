@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   layout "user"
 
   def new
+    @user = User.new
     @login_page = true
   end
 

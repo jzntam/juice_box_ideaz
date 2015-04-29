@@ -1,5 +1,7 @@
-$(".comments").append("<%= j render partial: '/comments/comment',
+$(".comments").prepend("<%= j render partial: '/comments/comment',
  locals: {comment: @comment} %>");
 //$('#comment_body').val("");
+$(".comments_count").html('')
 <% @comment = Comment.new %>
 $('.comment_form').html("<%= j render partial: '/comments/form' %>");
+$('.comments_count').html("<%= j render partial: '/comments/count' %>");
