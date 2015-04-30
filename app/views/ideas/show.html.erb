@@ -1,9 +1,11 @@
 <div class="show_idea">
   <% if current_user == @idea.user %>
-    <h1><%= best_in_place @idea, :title, as: :input, :html_attrs => { :style => 'width:100%;' } %></h1>
-    <% else %>
-      <h1><%= @idea.title %></h1>
-    <% end %>
+    <div class="info-tooltip" data-toggle="tooltip" data-placement="top" title="Click 'Title' to Edit 'In Place'">
+      <h1><%= best_in_place @idea, :title, as: :input, :html_attrs => { :style => 'width:100%;' } %></h1>
+    </div>
+  <% else %>
+    <h1><%= @idea.title %></h1>
+  <% end %>
   <hr>
   <div class="pins">
     <% pin = @idea.pins.find_by_user_id(current_user.id) if user_signed_in? %>
@@ -15,9 +17,10 @@
   </div>
   <div class="description">
     <% if current_user == @idea.user %>
-      <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }, :html_attrs => { :style => 'width:100%;' }) %>
+      <div class="info-tooltip" data-toggle="tooltip" data-placement="top" title="Click 'Description' to Edit 'In Place' using MarkDown">
+        <%= best_in_place(@idea, :description, :path => {:controller => "ideas", :action => "update"}, :type => :textarea, display_with: lambda {|text| markdown.render(text).html_safe }, :html_attrs => { :style => 'width:100%;' }) %>
+      </div>
     <% else %>
-
       <%= raw markdown.render(@idea.description) %>
     <% end %>
   </div>
