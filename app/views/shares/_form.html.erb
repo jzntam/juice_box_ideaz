@@ -1,0 +1,6 @@
+<h4 class="share-modal-header">Choose a Team to Share the Idea With</h4>
+<%= simple_form_for @share, url: idea_shares_path(@idea), method: :post do |f| %>
+  <%= f.collection_check_boxes :team_ids, current_user.teams, :id, :title, {:item_wrapper_class => 'checkbox_container'} %>
+  <br>
+  <%= f.submit class: "btn btn-info" %>
+<% end %>

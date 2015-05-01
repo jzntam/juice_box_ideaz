@@ -29,6 +29,7 @@ a .pinned {
   padding: 0px;
   width: 65px;
   text-align: right;
+  float: right;
 }
 
 .trash, .users, .bookmark {
@@ -64,10 +65,10 @@ i.fa.fa-bookmark.fa-5x {
   text-decoration: none;
 }
 
-
-@media (max-width: 500px) {
-  icon {
-    text-align: left;
+@media (max-width: 995px) {
+  .icon {
+    // text-align: left;
+    float:none;
   }
 }
 
@@ -85,3 +86,5 @@ i.fa.fa-bookmark.fa-5x {
   font-size: 15px;
 }
 
+.ideas-container{
+}
