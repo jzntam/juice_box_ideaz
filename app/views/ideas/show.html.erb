@@ -28,8 +28,11 @@
   <% if current_user == @idea.user %>
   <!-- see above with best_in_place -->
     <%#= link_to "Edit", edit_idea_path(@idea) %>
-    <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-info btn-sm" %>
+    <%= button_to "Delete", idea_path(@idea), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-warning btn-sm" %>
   <% end %>
+  <br>
+  <!-- Should this button go inside the above if statement??? -->
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target=".share_idea_modal">Share Idea</button>
 </div>
 <hr>
 <div class="comment_form">
@@ -42,14 +45,18 @@
 <hr>
 <div class="comments">
   <% @idea.comments.each do |comment| %>
-    <div></div>
     <%= render partial: "/comments/comment", locals: {comment: comment} %>
   <% end %>
 </div>
 <br>
-<h2>Sharing Ideas With Teams</h2>
-<%= simple_form_for Share.new, url: idea_shares_path(@idea), method: :post do |f| %>
-  <%= f.collection_check_boxes :team_ids, current_user.teams, :id, :title %>
-  <%#= f.association :teams_shared_with, as: :check_boxes %>
-  <%= f.submit class: "btn btn-info" %>
-<% end %>
+<%#= render partial: "/shares/form" %>
+
+<!-- Sharing Modal -->
+<div class="modal fade share_idea_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= render partial: "/shares/form" %>
+    </div>
+  </div>
+</div>
