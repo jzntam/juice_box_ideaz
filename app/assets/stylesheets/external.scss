@@ -24,7 +24,7 @@
 
 .main {
   /*padding-bottom: 143px;*/
-  padding-top: 24px;
+  padding: 50px 0px;
   clear: both;
 }
 
@@ -49,7 +49,8 @@ img.left-image.img-responsive {
 
 .main-text {
  font-size: 19px;
- max-width: 900px ;
+ text-align: justify;
+ // max-width: 900px ;
 }
 
 .modal-content #wrapper {
@@ -103,3 +104,6 @@ button.new-team:hover {
   color: #000000
 }
 
+footer {
+  padding: 20px;
+}
