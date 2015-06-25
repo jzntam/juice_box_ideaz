@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @my_ideas = current_user.ideas
     @shared_with_me = current_user.shared_ideas.select(:title, :id, :user_id).distinct

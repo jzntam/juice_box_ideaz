@@ -44,11 +44,39 @@ RSpec.describe IdeasController, type: :controller do
 
     context "user not signed in" do
       it "redirects to sign in page" do
-        get :new
+        get :index
         expect(response).to redirect_to new_session_path
       end
     end
 
+  end
+
+  describe "#show" do
+
+    context "with user signed in" do
+      before {login(user)}
+      before { get :show, id: idea.id }
+      it "renders the show template" do
+        expect(response).to render_template(:show)
+      end
+      it "sets an instance variable with the idea whose id is passed" do
+        expect(assigns(:idea)).to eq(idea)
+      end
+      it "set a instance variable to a new comment" do
+        expect(assigns(:comment)).to be_a_new Comment
+      end
+      it "set a instance variable to a new share" do
+        expect(assigns(:share)).to be_a_new Share
+      end
+    end
+
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        get :show, id: idea.id 
+        expect(response).to redirect_to new_session_path
+      end
+    end
+    
   end
 
 end
