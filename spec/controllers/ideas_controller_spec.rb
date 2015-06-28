@@ -102,4 +102,30 @@ RSpec.describe IdeasController, type: :controller do
     
   end
 
+  describe "#Create" do
+    context "with user signed in" do
+      before { login(user) }
+      context "with valid parameters" do
+        def valid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: "Valid Description"}}
+        end
+
+        it "instantiates a new variable with params passed in" do
+          expect { valid_request }.to change { Idea.count }.by(1)
+        end
+        it "expects idea creator to be the current_user" do
+          valid_request
+          expect(idea.user).to eq(user)
+        end
+        it "redirects to the idea show page" do
+          valid_request
+          expect(response).to redirect_to(Idea.last)
+        end
+      end
+      # Add invalid parameters contexy
+    end
+    # Add user not signed in context
+  end
+
 end
