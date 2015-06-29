@@ -123,9 +123,20 @@ RSpec.describe IdeasController, type: :controller do
           expect(response).to redirect_to(Idea.last)
         end
       end
-      # Add invalid parameters contexy
+
     end
-    # Add user not signed in context
+
+    context "user not signed in" do
+      def valid_request
+        post :create, {idea: {title: "Valid Title",
+                              description: "Valid Description"}}
+      end
+      it "redirects to sign in page" do
+        valid_request
+        expect(response).to redirect_to new_session_path
+      end
+    end
+
   end
 
 end
