@@ -123,7 +123,7 @@ RSpec.describe IdeasController, type: :controller do
           expect(response).to redirect_to(Idea.last)
         end
       end
-      context "with valid parameters" do
+      context "with invalid parameters" do
         def invalid_request
           post :create, {idea: {title: "Valid Title",
                                 description: nil }}
@@ -139,13 +139,25 @@ RSpec.describe IdeasController, type: :controller do
     end
 
     context "user not signed in" do
-      def valid_request
-        post :create, {idea: {title: "Valid Title",
-                              description: "Valid Description"}}
+      context "with valid parameters" do
+        def valid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: "Valid Description"}}
+        end
+        it "redirects to sign in page" do
+          valid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
-      it "redirects to sign in page" do
-        valid_request
-        expect(response).to redirect_to new_session_path
+      context "with invalid parameters" do
+        def invalid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: nil }}
+        end
+        it "redirects to sign in page" do
+          invalid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
     end
   end
