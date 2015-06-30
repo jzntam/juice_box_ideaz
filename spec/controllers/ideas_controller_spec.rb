@@ -123,7 +123,19 @@ RSpec.describe IdeasController, type: :controller do
           expect(response).to redirect_to(Idea.last)
         end
       end
-
+      context "with valid parameters" do
+        def invalid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: nil }}
+        end
+        it "doesn't create a record in the database" do
+          expect { invalid_request }.to change { Idea.count }.by(0)
+        end
+        it "renders back to the new idea template" do
+          invalid_request
+          expect(response).to render_template(:new)
+        end
+      end
     end
 
     context "user not signed in" do
@@ -136,7 +148,6 @@ RSpec.describe IdeasController, type: :controller do
         expect(response).to redirect_to new_session_path
       end
     end
-
   end
 
 end
