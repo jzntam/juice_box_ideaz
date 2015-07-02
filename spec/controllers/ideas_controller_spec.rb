@@ -170,4 +170,17 @@ RSpec.describe IdeasController, type: :controller do
     end # context "user not signed in"
   end # End of #edit
 
+  describe "#update" do
+    context "with user signed in" do
+      before { login(user) }
+      def valid_attributes(new_attributes = {})
+        attributes_for(:idea).merge(new_attributes)
+      end
+      context "with valid attributes" do
+        before do
+          patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
+        end
+      end # Valid Attributes
+    end # context "with user signed in"
+  end # End of #update
 end
