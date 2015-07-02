@@ -151,4 +151,23 @@ RSpec.describe IdeasController, type: :controller do
     end # context "user not signed in"
   end # End of #create
 
+  describe "#edit" do
+    context "with user signed in" do
+      before {login(user)}
+      before { get :edit, id: idea.id }
+      it "renders the edit template" do
+        expect(response).to render_template(:edit)
+      end
+      it "sets an instance variable with the idea whose id is passed" do
+        expect(assigns(:idea)).to eq(idea)
+      end
+    end # context "with user signed in"
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        get :edit, id: idea.id
+        expect(response).to redirect_to new_session_path
+      end
+    end # context "user not signed in"
+  end # End of #edit
+
 end
