@@ -180,6 +180,18 @@ RSpec.describe IdeasController, type: :controller do
         before do
           patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
         end
+        it "sets an instance variable with the idea whose id is passed" do
+          expect(assigns(:idea)).to eq(idea)
+        end
+        it "updates the record in the database" do
+          expect(idea.reload.title).to eq("YeeHaw")
+        end
+        it "redirect_to the idea show page" do
+          expect(response).to redirect_to(idea_path(idea))
+        end
+        it "sets a flash message" do
+          expect(flash[:notice]).to be
+        end
       end # Valid Attributes
     end # context "with user signed in"
   end # End of #update
