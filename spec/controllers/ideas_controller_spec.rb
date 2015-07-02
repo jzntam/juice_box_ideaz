@@ -8,7 +8,6 @@ RSpec.describe IdeasController, type: :controller do
   let(:idea_2) { create(:idea, user: user_1) }
 
   describe "#index" do
-
     context "user signed in" do
       before { login(user) }
       it "renders the index template" do
@@ -40,19 +39,16 @@ RSpec.describe IdeasController, type: :controller do
         # byebug
         # This test passes but needs work, pins
       end
-    end
-
+    end # context "with user signed in"
     context "user not signed in" do
       it "redirects to sign in page" do
         get :index
         expect(response).to redirect_to new_session_path
       end
-    end
-
-  end
+    end # context "user not signed in"
+  end # End of #index
 
   describe "#show" do
-
     context "with user signed in" do
       before {login(user)}
       before { get :show, id: idea.id }
@@ -68,19 +64,16 @@ RSpec.describe IdeasController, type: :controller do
       it "set a instance variable to a new share" do
         expect(assigns(:share)).to be_a_new Share
       end
-    end
-
+    end # context "with user signed in"
     context "user not signed in" do
       it "redirects to sign in page" do
         get :show, id: idea.id 
         expect(response).to redirect_to new_session_path
       end
-    end    
-  
-  end
+    end # context "user not signed in"
+  end # End of #show
 
   describe "#new" do
-
     context "with user signed in" do
       before {login(user)}
       it "renders the new template" do
@@ -91,16 +84,14 @@ RSpec.describe IdeasController, type: :controller do
         get :new
         expect(assigns(:idea)).to be_a_new(Idea)
       end
-    end
-
+    end # context "with user signed in"
     context "user not signed in" do
       it "redirects to sign in page" do
         get :new
         expect(response).to redirect_to new_session_path
       end
-    end
-    
-  end
+    end # context "user not signed in"
+  end # End of #New
 
   describe "#Create" do
     context "with user signed in" do
@@ -110,7 +101,6 @@ RSpec.describe IdeasController, type: :controller do
           post :create, {idea: {title: "Valid Title",
                                 description: "Valid Description"}}
         end
-
         it "instantiates a new variable with params passed in" do
           expect { valid_request }.to change { Idea.count }.by(1)
         end
@@ -123,7 +113,7 @@ RSpec.describe IdeasController, type: :controller do
           expect(response).to redirect_to(Idea.last)
         end
       end
-      context "with valid parameters" do
+      context "with invalid parameters" do
         def invalid_request
           post :create, {idea: {title: "Valid Title",
                                 description: nil }}
@@ -136,18 +126,73 @@ RSpec.describe IdeasController, type: :controller do
           expect(response).to render_template(:new)
         end
       end
-    end
-
+    end # context "with user signed in"
     context "user not signed in" do
-      def valid_request
-        post :create, {idea: {title: "Valid Title",
-                              description: "Valid Description"}}
+      context "with valid parameters" do
+        def valid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: "Valid Description"}}
+        end
+        it "redirects to sign in page" do
+          valid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
+      context "with invalid parameters" do
+        def invalid_request
+          post :create, {idea: {title: "Valid Title",
+                                description: nil }}
+        end
+        it "redirects to sign in page" do
+          invalid_request
+          expect(response).to redirect_to new_session_path
+        end
+      end
+    end # context "user not signed in"
+  end # End of #create
+
+  describe "#edit" do
+    context "with user signed in" do
+      before {login(user)}
+      before { get :edit, id: idea.id }
+      it "renders the edit template" do
+        expect(response).to render_template(:edit)
+      end
+      it "sets an instance variable with the idea whose id is passed" do
+        expect(assigns(:idea)).to eq(idea)
+      end
+    end # context "with user signed in"
+    context "user not signed in" do
       it "redirects to sign in page" do
-        valid_request
+        get :edit, id: idea.id
         expect(response).to redirect_to new_session_path
       end
-    end
-  end
+    end # context "user not signed in"
+  end # End of #edit
 
+  describe "#update" do
+    context "with user signed in" do
+      before { login(user) }
+      def valid_attributes(new_attributes = {})
+        attributes_for(:idea).merge(new_attributes)
+      end
+      context "with valid attributes" do
+        before do
+          patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
+        end
+        it "sets an instance variable with the idea whose id is passed" do
+          expect(assigns(:idea)).to eq(idea)
+        end
+        it "updates the record in the database" do
+          expect(idea.reload.title).to eq("YeeHaw")
+        end
+        it "redirect_to the idea show page" do
+          expect(response).to redirect_to(idea_path(idea))
+        end
+        it "sets a flash message" do
+          expect(flash[:notice]).to be
+        end
+      end # Valid Attributes
+    end # context "with user signed in"
+  end # End of #update
 end
