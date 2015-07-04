@@ -39,7 +39,7 @@ class IdeasController < ApplicationController
         format.html { redirect_to idea_path(@idea), notice: "Idea updated!" }
         format.json { respond_with_bip(@idea) }
       else
-        format.html { flash[:notice] = "Please fix errors" }
+        format.html { flash[:alert] = "Please fix errors"; render :edit }
         format.json { render :json => @idea.errors.full_messages, :status => :unprocessable_entity }
       end
     end
