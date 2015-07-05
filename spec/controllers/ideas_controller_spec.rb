@@ -211,5 +211,19 @@ RSpec.describe IdeasController, type: :controller do
         end
       end # INValid Attributes
     end # context "with user signed in"
+    context "user not signed in" do
+      context "with valid attributes" do
+        it "redirects to sign in page" do
+          patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
+          expect(response).to redirect_to new_session_path
+        end
+      end # valid attributes
+      context "with invalid attributes" do
+        it "redirects to sign in page" do
+          patch :update, id: idea.id, idea: valid_attributes(title: "")
+          expect(response).to redirect_to new_session_path
+        end
+      end # invalid attributes
+    end # context "user not signed in"
   end # End of #update
 end
