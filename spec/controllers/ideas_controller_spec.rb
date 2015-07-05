@@ -171,11 +171,11 @@ RSpec.describe IdeasController, type: :controller do
   end # End of #edit
 
   describe "#update" do
+    def valid_attributes(new_attributes = {})
+      attributes_for(:idea).merge(new_attributes)
+    end
     context "with user signed in" do
       before { login(user) }
-      def valid_attributes(new_attributes = {})
-        attributes_for(:idea).merge(new_attributes)
-      end
       context "with valid attributes" do
         before do
           patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
@@ -193,6 +193,37 @@ RSpec.describe IdeasController, type: :controller do
           expect(flash[:notice]).to be
         end
       end # Valid Attributes
+      context "with invalid attributes" do
+        before do
+          patch :update, id: idea.id, idea: valid_attributes(title: "")
+        end
+        it "sets an instance variable with the idea whose id is passed" do
+          expect(assigns(:idea)).to eq(idea)
+        end
+        it "doesnt update the record in the database" do
+          expect(idea.reload.title).to_not eq("")
+        end
+        it "renders the edit template" do
+          expect(response).to  render_template(:edit)
+        end
+        it "sets a flash message" do
+          expect(flash[:alert]).to be
+        end
+      end # INValid Attributes
     end # context "with user signed in"
+    context "user not signed in" do
+      context "with valid attributes" do
+        it "redirects to sign in page" do
+          patch :update, id: idea.id, idea: valid_attributes(title: "YeeHaw")
+          expect(response).to redirect_to new_session_path
+        end
+      end # valid attributes
+      context "with invalid attributes" do
+        it "redirects to sign in page" do
+          patch :update, id: idea.id, idea: valid_attributes(title: "")
+          expect(response).to redirect_to new_session_path
+        end
+      end # invalid attributes
+    end # context "user not signed in"
   end # End of #update
 end
