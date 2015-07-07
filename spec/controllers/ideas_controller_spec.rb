@@ -225,5 +225,13 @@ RSpec.describe IdeasController, type: :controller do
         end
       end # invalid attributes
     end # context "user not signed in"
+    context "with non-owner user signed in" do
+      before { login(user) }
+      it "raises an error" do
+        expect do
+          patch :update, id: idea.id, idea: attributes_for(:idea_1)
+        end.to raise_error
+      end
+    end # context non-owner signed in
   end # End of #update
 end
