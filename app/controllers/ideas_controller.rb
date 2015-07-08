@@ -33,7 +33,7 @@ class IdeasController < ApplicationController
   end
 
   def update
-    @idea = Idea.find(params[:id])
+    @idea = current_user.ideas.find(params[:id])
     respond_to do |format|
       if @idea.update(idea_params)
         format.html { redirect_to idea_path(@idea), notice: "Idea updated!" }
@@ -46,7 +46,7 @@ class IdeasController < ApplicationController
   end
 
   def destroy
-    @idea = Idea.find(params[:id])
+    @idea = current_user.ideas.find(params[:id])
     @idea.destroy
     redirect_to ideas_path, notice: "Idea deleted succesfully!"
   end
