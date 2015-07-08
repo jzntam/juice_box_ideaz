@@ -234,4 +234,30 @@ RSpec.describe IdeasController, type: :controller do
       end
     end # context non-owner signed in
   end # End of #update
+
+  describe "#destroy" do
+    context "with user signed in" do
+      before { login(user) }
+      context "with owner signed in" do
+        it "sets an instance variable with the idea whose id is passed" do
+          delete :destroy, id: idea.id
+          expect(assigns(:idea)).to eq(idea)
+        end
+        it "reduces the number of campaigns in the database by 1" do
+          idea
+          expect { delete :destroy, id: idea.id }.to change { Idea.count }.by(-1)
+        end
+        it "redirects to the campaigns index page" do
+          delete :destroy, id: idea.id
+          expect(response).to redirect_to ideas_path
+        end
+        it "sets a flash message" do
+          delete :destroy, id: idea.id
+          expect(flash[:notice]).to be
+        end
+      end
+    end
+  end # End of #update
+
+
 end
