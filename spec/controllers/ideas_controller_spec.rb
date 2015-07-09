@@ -256,6 +256,11 @@ RSpec.describe IdeasController, type: :controller do
           expect(flash[:notice]).to be
         end
       end
+      context "with non-owner signed in" do
+        it "throws an error" do
+          expect { delete :destroy, id: idea_2.id }.to raise_error
+        end
+      end
     end
   end # End of #update
 
