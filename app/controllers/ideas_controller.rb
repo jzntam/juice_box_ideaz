@@ -47,8 +47,12 @@ class IdeasController < ApplicationController
 
   def destroy
     @idea = current_user.ideas.find(params[:id])
-    @idea.destroy
-    redirect_to ideas_path, notice: "Idea deleted succesfully!"
+    if @idea.destroy
+      redirect_to ideas_path, notice: "Idea deleted succesfully!"
+    else
+      flash[:error] = "You cannot delete a idea you did not create"
+      redirect_to idea_path(@idea)
+    end
   end
 
 
