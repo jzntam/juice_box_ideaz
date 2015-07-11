@@ -262,6 +262,12 @@ RSpec.describe IdeasController, type: :controller do
         end
       end
     end
+    context "with user not signed in" do
+      it "redirects to the sign in page" do
+        delete :destroy, id: idea.id
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
   end # End of #update
 
 
