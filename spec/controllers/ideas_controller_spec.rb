@@ -256,6 +256,17 @@ RSpec.describe IdeasController, type: :controller do
           expect(flash[:notice]).to be
         end
       end
+      context "with non-owner signed in" do
+        it "throws an error" do
+          expect { delete :destroy, id: idea_2.id }.to raise_error
+        end
+      end
+    end
+    context "with user not signed in" do
+      it "redirects to the sign in page" do
+        delete :destroy, id: idea.id
+        expect(response).to redirect_to(new_session_path)
+      end
     end
   end # End of #update
 
